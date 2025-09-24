@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Person Class Hierarchy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .title {
+      font-weight: bold;
+      color: #0077cc;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Person Class Hierarchy Output</h2>
+  <div id="output"></div>
+
+  <script>
+    // Base Class
+    class Person {
+      constructor(id, name) {
+        this.id = id;
+        this.name = name;
+      }
+
+      displayInfo() {
+        return `ID: ${this.id}, Name: ${this.name}`;
+      }
+    }
+
+    // Student Subclass
+    class Student extends Person {
+      constructor(id, name, rollNo, averageMarks) {
+        super(id, name);
+        this.rollNo = rollNo;
+        this.averageMarks = averageMarks;
+      }
+
+      displayInfo() {
+        return `${super.displayInfo()}, Roll No: ${this.rollNo}, Average Marks: ${this.averageMarks}`;
+      }
+    }
+
+    // Teacher Subclass
+    class Teacher extends Person {
+      constructor(id, name, salary, subject) {
+        super(id, name);
+        this.salary = salary;
+        this.subject = subject;
+      }
+
+      displayInfo() {
+        return `${super.displayInfo()}, Salary: ${this.salary}, Subject: ${this.subject}`;
+      }
+    }
+
+    // Real Examples
+    const student1 = new Student(101, "Amit Kumar", 45, 87.6);
+    const student2 = new Student(102, "Neha Sharma", 50, 92.3);
+
+    const teacher1 = new Teacher(201, "Mr. Rajesh", 55000, "Mathematics");
+    const teacher2 = new Teacher(202, "Mrs. Anjali", 60000, "Physics");
+
+    // Show output on page
+    const outputDiv = document.getElementById("output");
+    [student1, student2, teacher1, teacher2].forEach(obj => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<div class="title">${obj.constructor.name}</div>${obj.displayInfo()}`;
+      outputDiv.appendChild(div);
+    });
+  </script>
+</body>
+</html>
